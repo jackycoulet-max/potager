@@ -1,2 +1,23 @@
+import streamlit as st
+from google import genai
 
-import streamlit as st from google import genai API_KEY = "AQ.Ab8RN6Lnccde43LWZ1qBcksx6YgkqYB7cEigTnsSYx-gftlMNg" st.set_page_config(page_title="Le Potager Jurassien") st.title("Le Calendrier du Potager Jurassien") st.write("Bienvenue Jacky ! Consulte ton conseiller maraicher de Champagnole.") mois_choisi = st.selectbox("Selectionne le mois :", ["Mai", "Juin", "Juillet", "Aout", "Septembre"]) legume_choisi = st.selectbox("Selectionne le legume :", ["Courgette", "Tomate", "Poireau", "Carotte", "Salade"]) if st.button("Obtenir mes conseils du Jura"): with st.spinner("Consultation du maraicher..."): try: client = genai.Client(api_key=API_KEY) response = client.models.generate_content( model='gemini-2.5-flash', contents=f"Mois : {mois_choisi} | Legume : {legume_choisi}", config={ 'system_instruction': "Tu es l'ingredient secret de l'application 'Le Calendrier du Potager Jurassien'. Ton role est d'agir en maraicher expert base a Champagnole (Jura). Tu t'adresses a Jacky. Tu connais parfaitement le climat de moyenne montagne. Tu dois donner exclusivement 3 conseils prioritaires, courts et adaptes au terroir comtois.", } ) st.success("VOICI TES CONSEILS DU JURA :") st.write(response.text) except Exception as e: st.error(f"Une petite erreur est survenue : {e}") 
+API_KEY = "AQ.Ab8RN6Lnccde43LWZ1qBcksx6YgkqYB7cEigTnsSYx-gftlMNg"
+
+st.title("Le Potager Jurassien")
+st.write("Bienvenue Jacky !")
+
+mois = st.selectbox("Mois :", ["Mai", "Juin", "Juillet", "Août", "Septembre"])
+legume = st.selectbox("Légume :", ["Courgette", "Tomate", "Poireau", "Carotte", "Salade"])
+
+if st.button("Obtenir mes conseils"):
+    try:
+        client = genai.Client(api_key=API_KEY)
+        response = client.models.generate_content(
+            model='gemini-2.5-flash',
+            contents=f"Mois : {mois} | Légume : {legume}",
+            config={'system_instruction': "Tu es un maraîcher expert de Champagnole. Donne 3 conseils courts à Jacky pour son potager."}
+        )
+        st.success("CONSEILS DU JURA :")
+        st.write(response.text)
+    except Exception as e:
+        st.error(f"Erreur : {e}")
