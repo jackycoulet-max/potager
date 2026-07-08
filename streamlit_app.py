@@ -1,7 +1,7 @@
 import streamlit as st
 from google import genai
 
-API_KEY = "AQ.Ab8RN6Lnccde43LWZ1qBcksx6YgkqYB7cEigTnsSYx-gft1MNg"
+API_KEY = st.secrets["GEMINI_API_KEY"]
 
 st.title("Le Potager Jurassien")
 st.write("Bienvenue Jacky !")
