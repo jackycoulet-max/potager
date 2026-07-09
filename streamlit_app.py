@@ -3,9 +3,9 @@ from google import genai
 
 API_KEY = st.secrets["GEMINI_API_KEY"]
 
-st.title("Le Potager Jurassien")
+st.title("Mon jardin jurassien")
 st.image("accueil.png")
-st.write("Bienvenue Jacky !")
+st.write("Bienvenue aux jardiniers de la région !")
 
 mois = st.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
 legume = st.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
