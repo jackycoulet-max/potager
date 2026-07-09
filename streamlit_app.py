@@ -7,7 +7,7 @@ st.title("Le Potager Jurassien")
 st.write("Bienvenue Jacky !")
 
 mois = st.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
-legume = st.text_input("Entrez un légume ou un fruit ou un arbuste ou un arbre ou une plante aromatique) :", "Poireau")
+legume = st.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
 
 if st.button("Obtenir mes conseils"):
     try:
