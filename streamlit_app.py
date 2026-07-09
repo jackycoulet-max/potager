@@ -4,6 +4,7 @@ from google import genai
 API_KEY = st.secrets["GEMINI_API_KEY"]
 
 st.title("Le Potager Jurassien")
+st.image("accueil.png")
 st.write("Bienvenue Jacky !")
 
 mois = st.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
