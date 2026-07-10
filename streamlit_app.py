@@ -7,8 +7,9 @@ st.title("Mon jardin jurassien")
 st.image("accueil.png")
 st.write("Bienvenue aux jardiniers de la région !")
 
-mois = st.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
-legume = st.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
+st.sidebar.header("Parlons Jardin")
+mois = st.sidebar.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
+legume = st.sidebar.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
 
 if st.button("Obtenir mes conseils"):
     try:
