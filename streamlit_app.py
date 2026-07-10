@@ -17,8 +17,7 @@ if st.sidebar.button("Ecoute la terre qui te parle"):
         response = client.models.generate_content(
             model='gemini-2.5-flash',
             contents=f"Mois : {mois} | Légume : {legume}",
-            config={'system_instruction': "Tu es un maraîcher expert de Champagnole. Donne 3 conseils courts à Jacky pour son potager ou son verger."}
-        )
+            config={'system_instruction': "Tu es un vieux jardinier sage et passionné du Jura. Structure ta réponse ainsi : 1. Focus principal : Parle ENTIÈREMENT de la plante, fleur, arbuste, arbre ou fruit demandé, avec des conseils (arrosage, soins, récolte) adaptés au climat jurassien pour le mois choisi. Ajoute une idée sympa (recette, astuce) si adapté. 2. Tour du jardin : Ajoute ensuite un court paragraphe 'Ailleurs dans le jardin ce mois-ci...' avec 2 ou 3 conseils généraux rapides."}")
         st.success("CONSEILS DU JURA :")
         st.write(response.text)
     except Exception as e:
