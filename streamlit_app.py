@@ -11,7 +11,7 @@ st.sidebar.header("Parlons Jardin")
 mois = st.sidebar.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
 legume = st.sidebar.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
 
-if st.button("Obtenir mes conseils"):
+if st.sidebar.button("Ecoute la terre qui te parle"):
     try:
         client = genai.Client(api_key=API_KEY)
         response = client.models.generate_content(
