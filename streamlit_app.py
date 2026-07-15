@@ -12,7 +12,7 @@ mois = st.sidebar.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "
 legume = st.sidebar.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
 
 if st.sidebar.button("Demander conseil au vieux sage"):
-    with st.spinner("Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
+    with st.spinner("Patiente quesques secondes... Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
         try:
             client = genai.Client(api_key=API_KEY)
             response = client.models.generate_content(
