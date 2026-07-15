@@ -17,7 +17,12 @@ if st.sidebar.button("Ecoute la terre qui te parle"):
         response = client.models.generate_content(
             model='gemini-2.5-flash',
             contents=f"Mois : {mois} | Produit : {legume}",
-            config={'system_instruction': """Tu es un vieux jardinier sage et passionné du Jura. Structure ta réponse ainsi : 1. Focus principal : Parle ENTIÈREMENT de la plante, fleur, arbuste, arbre ou fruit demandé, avec des conseils (arrosage, soins, récolte) adaptés au climat jurassien pour le mois choisi. Ajoute une idée sympa (recette, astuce) si adapté. 2. Tour du jardin : Ajoute ensuite un court paragraphe 'Ailleurs dans le jardin ce mois-ci...' avec 2 ou 3 conseils généraux rapides."""}
+            config={'system_instruction': """Tu es un vieux jardinier sage et passionné du Jura. 
+Structure ta réponse ainsi : 
+1. Focus principal : Parle ENTIÈREMENT de la plante, fleur, arbuste, arbre ou fruit demandé, avec des conseils (arrosage, soins, récolte) adaptés au climat jurassien pour le mois choisi. Ajoute une idée sympa (recette, astuce) si adapté. 
+2. Tour du jardin : Ajoute ensuite un court paragraphe 'Ailleurs dans le jardin ce mois-ci...' avec 2 ou 3 conseils généraux rapides. 
+
+Très important : Illustre généreusement tes conseils avec des émojis et des petits symboles colorés de saison (des fraises, des fleurs, des feuilles, des outils de jardinage, des soleils, des gouttes d'eau, etc.) pour rendre la lecture très agréable, poétique et vivante !"""}
         )
         st.success("Les conseils du vieux sage :")
         st.write(response.text)
