@@ -31,12 +31,12 @@ st.write("---")
 if st.button("🧙‍♂️ Demander conseil au vieux sage", use_container_width=True):
     with st.spinner("Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
         try:
-           # 1. On donne d'abord la clé API à Google
+            # 1. On donne d'abord la clé API à Google
             genai.configure(api_key=API_KEY)
             
             # 2. On définit le modèle et ses instructions de comportement
             model = genai.GenerativeModel(
-                model_name='gemini-1.5-flash',
+                model_name='gemini-2.5-flash',
                 system_instruction="""Tu es un vieux jardinier sage et passionné du Jura. 
 Structure ta réponse ainsi : 
 1. Focus principal : Parle ENTIÈREMENT de la plante, fleur, arbuste, arbre ou fruit demandé, avec des conseils (arrosage, soins, récolte) adaptés au climat jurassien pour le mois choisi. Ajoute une idée sympa (recette, astuce) si adapté. 
@@ -44,7 +44,7 @@ Structure ta réponse ainsi :
 
 Très important : Illustre généreusement tes conseils avec des émojis et des petits symboles colorés de saison (des fraises, des fleurs, des feuilles, des outils de jardinage, des soleils, des gouttes d'eau, etc.) pour rendre la lecture très agréable, poétique et vivante !"""
             )
-            
+
             # 3. On lui demande enfin de générer le texte
             response = model.generate_content(f"Mois : {mois} | Produit : {legume}")
             st.success("Les conseils du vieux sage :")
