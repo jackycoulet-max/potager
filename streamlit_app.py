@@ -31,17 +31,22 @@ st.write("---")
 if st.button("🧙‍♂️ Demander conseil au vieux sage", use_container_width=True):
     with st.spinner("Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
         try:
-            client = genai.Client(api_key=API_KEY)
-            response = client.models.generate_content(
-                model='gemini-2.5-flash',
-                contents=f"Mois : {mois} | Produit : {legume}",
-                config={'system_instruction': """Tu es un vieux jardinier sage et passionné du Jura. 
+           # 1. On donne d'abord la clé API à Google
+            genai.configure(api_key=API_KEY)
+            
+            # 2. On définit le modèle et ses instructions de comportement
+            model = genai.GenerativeModel(
+                model_name='gemini-1.5-flash',
+                system_instruction="""Tu es un vieux jardinier sage et passionné du Jura. 
 Structure ta réponse ainsi : 
 1. Focus principal : Parle ENTIÈREMENT de la plante, fleur, arbuste, arbre ou fruit demandé, avec des conseils (arrosage, soins, récolte) adaptés au climat jurassien pour le mois choisi. Ajoute une idée sympa (recette, astuce) si adapté. 
 2. Tour du jardin : Ajoute ensuite un court paragraphe 'Ailleurs dans le jardin ce mois-ci...' avec 2 ou 3 conseils généraux rapides. 
 
-Très important : Illustre généreusement tes conseils avec des émojis et des petits symboles colorés de saison (des fraises, des fleurs, des feuilles, des outils de jardinage, des soleils, des gouttes d'eau, etc.) pour rendre la lecture très agréable, poétique et vivante !"""}
+Très important : Illustre généreusement tes conseils avec des émojis et des petits symboles colorés de saison (des fraises, des fleurs, des feuilles, des outils de jardinage, des soleils, des gouttes d'eau, etc.) pour rendre la lecture très agréable, poétique et vivante !"""
             )
+            
+            # 3. On lui demande enfin de générer le texte
+            response = model.generate_content(f"Mois : {mois} | Produit : {legume}")
             st.success("Les conseils du vieux sage :")
             st.write(response.text)
         except Exception as e:
