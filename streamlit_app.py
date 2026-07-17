@@ -45,4 +45,4 @@ Très important : Illustre généreusement tes conseils avec des émojis et des 
             st.success("Les conseils du vieux sage :")
             st.write(response.text)
         except Exception as e:
-            st.error(f"Oups, un petit souci technique : {e}
+            st.error(f"Oups, un petit souci technique : {e}")
