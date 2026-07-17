@@ -1,18 +1,35 @@
 import streamlit as st
-from google import genai
+import google.generativeai as genai
+import os
 
+# 1. LA LIGNE MAGIQUE : Elle donne le vrai nom et l'icône à l'application
+st.set_page_config(page_title="Jardin du Jura", page_icon="🌱")
+
+# Récupération de la clé API secrète
 API_KEY = st.secrets["GEMINI_API_KEY"]
 
-st.title("Mon jardin jurassien")
-st.image("accueil.png")
-st.write("Bienvenue aux jardiniers de la région !")
+# Interface d'accueil
+st.title("Mon jardin jurassien 🏔️")
+st.image("image.jpg")  # Ta jolie photo du jardin
+st.write("### Bienvenue aux jardiniers de la région !")
 
-st.sidebar.header("Parlons Jardin")
-mois = st.sidebar.selectbox("Mois :", ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"])
-legume = st.sidebar.text_input("Entrez un légume , un fruit , une fleur, un arbuste , un arbre ou une plante aromatique) :", "Poireau")
+# BARRE LATÉRALE : On y laisse UNIQUEMENT les choix (pas de bouton ici !)
+st.sidebar.title("🌿 Parlons Jardin")
 
-if st.sidebar.button("Demander conseil au vieux sage"):
-    with st.spinner("Patiente quesques secondes... Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
+mois = st.sidebar.selectbox(
+    "Choisissez le mois :",
+    ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+)
+
+legume = st.sidebar.selectbox(
+    "Choisissez la plante ou le légume :",
+    ["Tomate", "Courgette", "Salade", "Carotte", "Pomme de terre", "Haricot", "Fraise", "Framboise", "Arbre fruitier", "Fleurs de saison"]
+)
+
+# PAGE PRINCIPALE : Le bouton est maintenant ici, gros et bien visible sous la photo !
+st.write("---")
+if st.button("🧙‍♂️ Demander conseil au vieux sage", use_container_width=True):
+    with st.spinner("Le vieux sage enfile ses bottes et consulte ses grimoires jurassiens..."):
         try:
             client = genai.Client(api_key=API_KEY)
             response = client.models.generate_content(
@@ -28,5 +45,4 @@ Très important : Illustre généreusement tes conseils avec des émojis et des 
             st.success("Les conseils du vieux sage :")
             st.write(response.text)
         except Exception as e:
-            st.error(f"Oups, un petit souci technique : {e}")
-   
+            st.error(f"Oups, un petit souci technique : {e}
