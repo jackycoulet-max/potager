@@ -10,7 +10,7 @@ API_KEY = st.secrets["GEMINI_API_KEY"]
 
 # Interface d'accueil
 st.title("Mon jardin jurassien 🏔️")
-st.image("image.jpg")  # Ta jolie photo du jardin
+st.image("image.png")  # Ta jolie photo du jardin
 st.write("### Bienvenue aux jardiniers de la région !")
 
 # BARRE LATÉRALE : On y laisse UNIQUEMENT les choix (pas de bouton ici !)
